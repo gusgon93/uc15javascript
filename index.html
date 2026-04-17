@@ -1,0 +1,291 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atividades JavaScript</title>
+
+<style>
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3a8a, #173982);
+    color: #333;
+    text-align: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Título */
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Container central */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Botões */
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background: #6489d9;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4a5885;
+}
+
+/* Inputs */
+input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 15px;
+    font-weight: bold;
+    background: #f1f5f9;
+    color: #111;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Atividades JavaScript</h1>
+
+<!-- ATIVIDADES 1 a 5 -->
+<button onclick="cadastroAluno()">Cadastrar 3 Alunos</button>
+<button onclick="cadastroIdade()">Cadastrar Idade</button>
+<button onclick="mostrarQuantidade()">Qtd Alunos</button>
+<button onclick="verificarIdade()">Verificar Idade</button>
+
+<br><br>
+<input type="number" id="nota" placeholder="Digite a nota">
+<button onclick="verificarNota()">Ver Nota</button>
+
+<hr>
+
+<!-- ATIVIDADES 6 a 13 -->
+<button onclick="menu()">Menu Switch</button>
+<button onclick="produtos()">Produtos</button>
+<button onclick="mostrarNomes()">Mostrar Nomes</button>
+<button onclick="somarNumeros()">Somar Números</button>
+<button onclick="mediaNotas()">Média Notas</button>
+<button onclick="listarIndice()">Listar Índice</button>
+<button onclick="maioresIdade()">Maiores de Idade</button>
+
+<hr>
+
+<!-- ATIVIDADE 14 -->
+<button onclick="verCargo()">Ver Cargo</button>
+
+<!-- ATIVIDADE 15 -->
+<br><br>
+<input type="text" id="nome" placeholder="Digite um nome">
+<button onclick="adicionarNome()">Adicionar Nome</button>
+
+<p id="resultado"></p>
+
+<script>
+
+// ATIVIDADE 1
+function cadastroAluno(){
+    let nomes = [];
+    for(let i=0; i < 3; i++) {
+        let nome = prompt('Digite um nome:');
+        nomes.push(nome);
+    }
+    alert(nomes.join(", "));
+}
+
+// ATIVIDADE 2
+let idades = [];
+function cadastroIdade() {
+    let idade = Number(prompt("Digite a idade:"));
+    if (!isNaN(idade)) {
+        idades.push(idade);
+        alert("Idade cadastrada!");
+    } else {
+        alert("Valor inválido!");
+    }
+}
+
+// ATIVIDADE 3
+function mostrarQuantidade() {
+    let alunos = ["Mateus", "Marcos", "Gustavo", "Nicolas", "Larissa"];
+    alert("Quantidade: " + alunos.length);
+}
+
+// ATIVIDADE 4
+function verificarIdade() {
+    let idade = Number(prompt("Digite sua idade:"));
+    alert(idade < 18 ? "Menor de idade" : "Maior de idade");
+}
+
+// ATIVIDADE 5
+function verificarNota() {
+    let nota = parseFloat(document.getElementById("nota").value);
+
+    if (isNaN(nota) || nota < 0 || nota > 10) {
+        resultado.innerHTML = "Nota inválida!";
+        return;
+    }
+
+    resultado.innerHTML = nota >= 7 ? "Aprovado" : "Reprovado";
+}
+
+// ATIVIDADE 6
+function menu() {
+    let opcao = prompt("1-Cadastrar | 2-Listar | 3-Sair");
+
+    switch(opcao) {
+        case "1": mostrar("Cadastrar"); break;
+        case "2": mostrar("Listar"); break;
+        case "3": mostrar("Sair"); break;
+        default: mostrar("Inválido");
+    }
+}
+
+// ATIVIDADE 7
+function produtos() {
+    let produtos = [];
+    produtos.push("Mouse", "Teclado", "Monitor");
+    mostrar(produtos.join(", "));
+}
+
+// ATIVIDADE 8
+function mostrarNomes() {
+    let nomes = ["João", "Maria", "Pedro"];
+    let texto = "";
+
+    for(let i = 0; i < nomes.length; i++) {
+        texto += nomes[i] + "<br>";
+    }
+
+    mostrar(texto);
+}
+
+// ATIVIDADE 9
+function somarNumeros() {
+    let numeros = [10, 20, 30];
+    let soma = 0;
+
+    for(let i = 0; i < numeros.length; i++) {
+        soma += numeros[i];
+    }
+
+    mostrar("Soma: " + soma);
+}
+
+// ATIVIDADE 10 e 11
+function mediaNotas() {
+    let notas = [7, 8, 6];
+    let soma = 0;
+
+    for(let i = 0; i < notas.length; i++) {
+        soma += notas[i];
+    }
+
+    let media = soma / notas.length;
+    let situacao = media >= 7 ? "Aprovado" : "Reprovado";
+
+    mostrar("Média: " + media + "<br>" + situacao);
+}
+
+// ATIVIDADE 12
+function listarIndice() {
+    let nomes = ["João", "Maria", "Carlos"];
+    let texto = "";
+
+    for(let i = 0; i < nomes.length; i++) {
+        texto += i + " - " + nomes[i] + "<br>";
+    }
+
+    mostrar(texto);
+}
+
+// ATIVIDADE 13
+function maioresIdade() {
+    let idades = [12, 18, 25, 15];
+    let texto = "";
+
+    for(let i = 0; i < idades.length; i++) {
+        if(idades[i] >= 18) {
+            texto += idades[i] + "<br>";
+        }
+    }
+
+    mostrar(texto);
+}
+
+// ATIVIDADE 14
+function verCargo() {
+    let cargo = prompt("Digite A ou U");
+
+    let resultadoTexto = "";
+
+    switch (cargo) {
+        case "A": resultadoTexto = "Administrador"; break;
+        case "U": resultadoTexto = "Usuário"; break;
+        default: resultadoTexto = "Inválido";
+    }
+
+    resultado.innerHTML = resultadoTexto;
+}
+
+// ATIVIDADE 15
+let nomesLista = [];
+
+function adicionarNome() {
+    let nome = document.getElementById("nome").value;
+
+    if (nome === "") {
+        alert("Digite um nome!");
+        return;
+    }
+
+    nomesLista.push(nome);
+
+    resultado.innerHTML = nomesLista.join(", ");
+
+    document.getElementById("nome").value = "";
+}
+
+// FUNÇÃO PADRÃO
+function mostrar(msg) {
+    document.getElementById("resultado").innerHTML = msg;
+}
+
+</script>
+
+</body>
+</html>
+```
